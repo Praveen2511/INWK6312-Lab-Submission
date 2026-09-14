@@ -1,46 +1,21 @@
+# INWK6312 - Lab 1: Network Namespaces and Git Operations
 
-# INWK6312 Lab 1 — Linux and Git Foundations
+## Project Overview
+This repository contains shell scripts to automate the creation, management, and teardown of a routed network namespace topology simulating multiple hosts (`ns-hostA`, `ns-hostB`, `ns-hostC`) connected through a central router (`ns-router`).
 
-This repository contains the coursework for INWK6312, starting with Lab 1.
+## Directory Structure.
+├── lab1/
+│   └── scripts/
+│       ├── build-topology.sh      # Script to create namespaces, veth pairs, assign IPs, and set static routes
+│       └── teardown-topology.sh   # Script to cleanly remove all network namespaces
+└── README.md                      # Project documentation
 
-## Repository Structure
+## How to Execute the Scripts
 
-- `lab1/` — Deliverables for Lab 1, including filesystem exercises, text processing
-  practice, systemd service configuration, and the namespace-based routed topology.
-- `lab1/scripts/` — Automation scripts for building and tearing down the lab
-  network topology.
-- `tools/` — Shared utilities used across labs (populated in later modules).
-- `topology/` — Persistent network topology definitions (starting Lab 2).
-- `.velab/` — Local Python virtual environment (excluded from version control).
-- `requirements.txt` — Cumulative list of Python dependencies used across labs.
+### 1. Rebuild the Network Topology
+To create all namespaces, virtual ethernet (`veth`) pairs, assign IP addresses, and enable IP forwarding on the router, run:
 
-## Running the Topology Scripts
-
-The scripts in `lab1/scripts/` build and tear down a three-host routed network
-using Linux network namespaces: `ns-hostA`, `ns-hostB`, and `ns-hostC`, all
-connected through a central `ns-router` namespace.
-
-To build the topology:
-
-\`\`\`bash
+```bash
 sudo ./lab1/scripts/build-topology.sh
-\`\`\`
 
-To tear it down:
-
-\`\`\`bash
-sudo ./lab1/scripts/teardown-topology.sh
-\`\`\`
-
-Both scripts are idempotent — running `build-topology.sh` when namespaces already
-exist will skip creation rather than fail, and `teardown-topology.sh` will skip
-namespaces that don't exist.
-
-## Environment Setup
-
-Activate the shared Python virtual environment before working in this repository:
-
-\`\`\`bash
-source ~/labs/.velab/bin/activate
-\`\`\`
 
