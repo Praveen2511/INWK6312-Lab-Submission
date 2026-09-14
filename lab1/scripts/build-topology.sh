@@ -28,8 +28,8 @@ ip link set veth-hostC netns ns-hostC
 ip link set veth-routerC netns ns-router
 
 # TODO: assign addresses to each interface
-ip netns exec ns-hostA ip addr add 10.10.1.2/24 dev veth-hostA
-ip netns exec ns-router ip addr add 10.10.1.1/24 dev veth-routerA
+ip netns exec ns-hostA ip addr add 10.10.21.2/24 dev veth-hostA
+ip netns exec ns-router ip addr add 10.10.21.1/24 dev veth-routerA
 
 ip netns exec ns-hostB ip addr add 10.10.2.2/24 dev veth-hostB
 ip netns exec ns-router ip addr add 10.10.2.1/24 dev veth-routerB
@@ -56,7 +56,7 @@ ip netns exec ns-router ip link set dev lo up
 ip netns exec ns-router sysctl -w net.ipv4.ip_forward=1
 
 # TODO: add the static routes on ns-hostA and ns-hostB
-ip netns exec ns-hostA ip route add default via 10.10.1.1
+ip netns exec ns-hostA ip route add default via 10.10.21.1
 ip netns exec ns-hostB ip route add default via 10.10.2.1
 ip netns exec ns-hostC ip route add default via 10.10.3.1
 
