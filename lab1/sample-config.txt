@@ -1,0 +1,13 @@
+hostname R1
+interface GigabitEthernet0/0
+description Uplink to Core
+ip address 10.1.1.1 255.255.255.0
+interface GigabitEthernet0/1
+description Access VLAN30
+ip address 10.1.10.1 255.255.255.0
+interface GigabitEthernet0/2
+description Access VLAN20
+ip address 10.1.20.1 255.255.255.0
+router ospf 1
+network 10.1.1.0 0.0.0.255 area 0
+network 10.1.10.0 0.0.0.255 area 0
